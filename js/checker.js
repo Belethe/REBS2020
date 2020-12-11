@@ -26,16 +26,16 @@ $(document).ready(function(e) {
         results = []
         if(!empty){
             for (i = 0 ; i<graphs.length ; i++){ //for each graph
+                console.log(JSON.stringify("GRAPH"+i))
                 var successes = 0
                 var fails = 0
                 var hasFailed = false
                 for (j = 0 ; j<logs.length ; j++){ //for each trace
                     var graph = _.cloneDeep(graphs[i]); //XXX: THIS NEEDS TO BE A DEEP COPY!!
                     for (k = 0 ; k<logs[j].length ; k++){ //for each activity in trace
-                        console.log(JSON.stringify("We are about to do: "+logs[j][k]))
                         if (!graph.execute(logs[j][k][1])){
                             hasFailed = true
-                            console.log(JSON.stringify("failed after: "+k+" activities"))
+                            console.log(JSON.stringify("log "+logs[j][0][0]+"failed"))
                             break;
                         }
                     }
@@ -43,7 +43,14 @@ $(document).ready(function(e) {
                         fails += 1;
                     }
                     else {
-                        successes += 1;
+                        if (graph.isAccepting()){
+                            successes += 1;
+                            console.log(JSON.stringify("log "+logs[j][0][0]+"succeeded"))
+                        }
+                        else {
+                            fails += 1;
+                            console.log(JSON.stringify("log "+logs[j][0][0]+"failed"))
+                        }
                     }
                     hasFailed = false;
                 }
