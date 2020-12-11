@@ -32,11 +32,11 @@ $(document).ready(function(e) {
                 var fails = 0
                 var hasFailed = false
                 for (j = 0 ; j<logs.length ; j++){ //for each trace
-                    var graph = _.cloneDeep(graphs[i]); //XXX: THIS NEEDS TO BE A DEEP COPY!!
+                    var graph = _.cloneDeep(graphs[i]);
                     for (k = 0 ; k<logs[j].length ; k++){ //for each activity in trace
                         if (!graph.execute(logs[j][k][1])){
                             hasFailed = true
-                            console.log(JSON.stringify("log "+logs[j][0][0]+" failed"))
+                            console.log(JSON.stringify(logs[j][0][0]+" did an unavailable event"))
                             break;
                         }
                     }
@@ -49,7 +49,7 @@ $(document).ready(function(e) {
                         }
                         else {
                             fails += 1;
-                            console.log(JSON.stringify("log "+logs[j][0][0]+" failed"))
+                            console.log(JSON.stringify(logs[j][0][0]+" ended in a not accepting state"))
                         }
                     }
                     hasFailed = false;

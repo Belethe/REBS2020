@@ -58,7 +58,7 @@ $(document).ready(function(e) {
                 separator: '\t', // Sets a custom field separator character
             });
             
-            //Code for making the array pretty! :D
+            //Code marking the log a 3d array of [trace[activity[id,name,date]]]
             logs = [[]]
             logs[0][0] = log[0]
             var prev = log[0][0] // id of first element
