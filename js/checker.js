@@ -55,18 +55,21 @@ $(document).ready(function(e) {
                 var successes = 0
                 var fails = 0
                 for (j = 0 ; j<logs.length ; j++){ //for each trace
-                    for (k = 0 ; k==logs[j].length ; k++){ //for ach activity in trace
-                        console.log(JSON.stringify("W are about to do: "+logs[j][k]))
-                        if (k==logs[j].length){ // if all traces have been executed without problems
-                            successes += 1;
-                            console.log(JSON.stringify("succes after: "+k+" activities"))
-                        }
-                        else if (!graphs[i].execute(logs[j][k][2])){
-                            fails += 1;
-                            console.log(JSON.stringify("fail after: "+k+" activities"))
+                    for (k = 0 ; k<logs[j].length ; k++){ //for each activity in trace
+                        console.log(JSON.stringify("We are about to do: "+logs[j][k]))
+                        if (!graphs[i].execute(logs[j][k][1])){
+                            hasFailed = true
+                            console.log(JSON.stringify("failed after: "+k+" activities"))
                             break;
                         }
                     }
+                    if (hasFailed){
+                        fails += 1;
+                    }
+                    else {
+                        successes += 1;
+                    }
+                    hasFailed = false;
                 }
                 results.push([successes,fails])
             }
