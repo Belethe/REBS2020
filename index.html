@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>JavaScript DCR Graphs Engine</title>
+  <meta name="description" content="JavaScript DCR Graphs Engine">
+  <meta name="author" content="Tijs Slaats">
+  <link rel="stylesheet" href="css/styles.css?v=1.0">
+</head>
+<body>  
+  <script src="js/lodash.js"></script>  
+  <script src="js/jQuery.js"></script>  
+  <script src="js/jquery.csv.min.js"></script>
+  <script src="js/dynamic_table.js"></script>
+  <script src="js/dcr.js"></script>
+  <script src="js/dcr_parser.js"></script>  
+  <script src="js/GUI.js"></script>
+  <script src="js/checker.js"></script>
+
+  <table id="task-table"></table>  
+  <p id="accepting"></p>
+  <br />  
+
+  <p id="check-error"></p>
+  <button id="btn-time">Time+1</button>&nbsp;<button id="btn-check">Kan det fusioner'?</button>
+  <br />
+
+  <textarea id="ta-dcr" rows="20" cols="150">
+Fill out application -->*(Account number changed,Applicant informed,Applicant justifies relevance,Approve,Approved  to board,Architect Review,Change phase to Abandon,Change phase to Abort,Change phase to Board meeting,Change phase to Complete,Change Phase to End Report,Change Phase to Payout,Change phase to Preparation,Change phase to Review,Execute abandon,Execute predecision,First payment,Inform applicant of approval,Inform application of board review,Lawyer Review,Payment completed,Receive end report,Register Decision,Reject,Review,Round approved,Round ends,Screen application,Screening reject,Set to Preapproved)
+
+Reject *--> (Applicant informed, Change phase to Abort)
+
+First payment -->% First payment
+
+Lawyer Review -->% Architect Review
+Architect Review -->% Lawyer Review</textarea>
+
+  <textarea id="ta-log" rows="20" cols="150">
+14a-026_01	Fill out application	28-01-14 15:08
+14a-026_02	Approved  to board	28-01-14 15:08
+14a-026_03	Change phase to Review	28-01-14 15:08
+14a-026_04	Lawyer Review	06-02-14 23:29
+14a-026_05	Review	11-02-14 17:06
+14a-026_06	Review	11-02-14 17:10
+14a-026_07	Review	11-02-14 17:11
+14a-026_07	Review	16-03-14 20:33
+14a-026_07	Architect Review	23-03-14 21:26
+14a-026_08	Register Decision	27-03-14 11:51
+14a-026_08	Change phase to Board meeting	27-03-14 11:52</textarea>
+  <p id="parse-error"></p>
+  <p id="test"></p>
+
+</body>
+</html>
