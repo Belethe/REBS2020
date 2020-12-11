@@ -1,5 +1,5 @@
 var taskTable;
-var graphs = graphs || [];
+var graphs = graphs || []; //If not already defined, set to empty
 var logs = logs || [];
 
 function fillDcrTable(status) {

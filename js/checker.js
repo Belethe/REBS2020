@@ -1,16 +1,3 @@
-// Oversæt csv til arrays (Kun ID, Title, Date, ét array pr ID)
-
-// For hver array:
-//     Sorter efter dato
-//     Fjern "-"
-//     for hver element i array:
-//         Event.eneable()
-//             if false:
-//                 false+1
-//                 break to next array
-//         Event.execute()
-//     sucesses+1
-
 var graphs = graphs || [] ; //If not already defined, set to empty
 var logs = logs || [] ;
 
@@ -59,7 +46,7 @@ $(document).ready(function(e) {
                     }
                     hasFailed = false;
                 }
-                results.push([successes,fails])
+                results.push([[successes,fails]])
             }
         }
         console.log(JSON.stringify("Results: "+results))
