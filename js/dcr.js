@@ -364,8 +364,8 @@ class DCRGraph {
 	execute(e)
 	{
         if (!this.hasEvent(e))
-            return;
-        this.getEvent(e).execute();
+            return false;
+        return this.getEvent(e).execute();
 	}
 	
 	isAccepting()

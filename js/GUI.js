@@ -41,12 +41,6 @@ $(document).ready(function(e) {
             graph1 = parser.parse(x.value);
             fillDcrTable(graph1.status());
             document.getElementById("parse-error").innerHTML = "";
-
-            console.log(JSON.stringify("The graphs:"));
-            console.log(JSON.stringify(graphs));
-            console.log(JSON.stringify("The complete graph for the dynamic table:"));
-            console.log(JSON.stringify(graph1));
-            console.log(JSON.stringify("log:"+logs));
         }
         catch(err)
         {
@@ -78,9 +72,6 @@ $(document).ready(function(e) {
                 }
                 logs[tracenr][logs[tracenr].length] = (log[i])
             }
-            console.log(JSON.stringify(logs));
-            
-
         }
         catch(err)
         {
