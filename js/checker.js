@@ -11,8 +11,11 @@
 //         Event.execute()
 //     sucesses+1
 
+//import _ from "lodash"
+
 var graphs = graphs || [] ; //If not already defined, set to empty
 var logs = logs || [] ;
+
 
 $(document).ready(function(e) {
     $('#btn-check').click(function(e) {
@@ -42,7 +45,7 @@ $(document).ready(function(e) {
                 var fails = 0
                 var hasFailed = false
                 for (j = 0 ; j<logs.length ; j++){ //for each trace
-                    var graph = graphs[i]; //XXX: THIS NEEDS TO BE A DEEP COPY!!
+                    var graph = _.cloneDeep(graphs[i]); //XXX: THIS NEEDS TO BE A DEEP COPY!!
                     for (k = 0 ; k<logs[j].length ; k++){ //for each activity in trace
                         console.log(JSON.stringify("We are about to do: "+logs[j][k]))
                         if (!graph.execute(logs[j][k][1])){
