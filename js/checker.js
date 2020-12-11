@@ -37,22 +37,41 @@ $(document).ready(function(e) {
         }
         results = []
         if(!empty){
-            graphs.forEach((graph) => {
-                // logs.forEach((log) => {
-                //     for(j = 0 ; j < log.length ; j++){
-                //         if(!graph.execute(logs[j][1])){
-                //             graph.marking.fails += 1; //XXX: checker.js:44 Uncaught TypeError: Cannot read property 'fails' of undefined
-                //             break;
-                //         }
-                //     }
-                //     graph.marking.successes += 1;
-                // });
-                // results.push([graph.marking.successes,graph.marking.fails])
-                console.log(JSON.stringify("Test"))
-                console.log(JSON.stringify(graph)) //graph IS an object...
-            });
+            // graphs.forEach((graph) => {
+            //     // logs.forEach((log) => {
+            //     //     for(j = 0 ; j < log.length ; j++){
+            //     //         if(!graph.execute(logs[j][1])){
+            //     //             graph.marking.fails += 1; //XXX: checker.js:44 Uncaught TypeError: Cannot read property 'fails' of undefined
+            //     //             break;
+            //     //         }
+            //     //     }
+            //     //     graph.marking.successes += 1;
+            //     // });
+            //     // results.push([graph.marking.successes,graph.marking.fails])
+            //     console.log(JSON.stringify("Test"))
+            //     console.log(JSON.stringify(graph)) //graph IS an object...
+            // });
+            for (i = 0 ; i<graphs.length ; i++){ //for each graph
+                var successes = 0
+                var fails = 0
+                for (j = 0 ; j<logs.length ; j++){ //for each trace
+                    for (k = 0 ; k==logs[j].length ; k++){ //for ach activity in trace
+                        console.log(JSON.stringify("W are about to do: "+logs[j][k]))
+                        if (k==logs[j].length){ // if all traces have been executed without problems
+                            successes += 1;
+                            console.log(JSON.stringify("succes after: "+k+" activities"))
+                        }
+                        else if (!graphs[i].execute(logs[j][k][2])){
+                            fails += 1;
+                            console.log(JSON.stringify("fail after: "+k+" activities"))
+                            break;
+                        }
+                    }
+                }
+                results.push([successes,fails])
+            }
         }
-        console.log(JSON.stringify(results))
+        console.log(JSON.stringify("Results: "+results))
 
     });
 });

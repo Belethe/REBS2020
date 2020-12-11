@@ -13,8 +13,6 @@ class Marking {
         this.lastExecuted = undefined;
         this.deadline = undefined;
         this.value;
-        this.successes = 0;
-        this.fails = 0;
     }
     toString() {
         return "(" + (executed ? 1 : 0) + "," + (included ? 1 : 0) + "," + (pending ? 1 : 0) + ")";
