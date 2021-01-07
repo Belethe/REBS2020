@@ -1,7 +1,7 @@
-from SellerShipperServiceInterfaceModule import SellerInterface
-from BuyerServiceInterfaceModule import BuyerShipperInterface, BuyerSellerInterface
+from InterfaceModules import SellerInterface, BuyerShipperInterface, BuyerSellerInterface
 
 include "console.iol"
+
 service BuyerService {
 
     execution{ single }
@@ -23,7 +23,7 @@ service BuyerService {
          interfaces: BuyerSellerInterface
     }
     main {
-        ask@Seller("chips") 
+        ask@Seller("chips")
 		{[quote(price)]{
 			if (price <5) {
 				println@Console( "price lower than 5")();
@@ -34,7 +34,7 @@ service BuyerService {
 				reject@Seller("Not ok to buy chips for " + price)
 			}
 		 }
-        
+
      		}
 	}
 }
