@@ -18,10 +18,10 @@ interface SellerShipperInterface {
 
 interface ShipperBuyerInterface {
     OneWay:
-        details( string)
+        details( string )
 }
 
 interface SellerBuyerInterface {
     OneWay:
-        quote( int)
+        quote( GetInvoiceInfo )
 }

@@ -24,18 +24,18 @@ service SellerService {
          interfaces: BuyerSellerInterface
     }
 
-        main {
+     main {
           [ask(product)]{
-               price = 10;
+               price = 27;
                name = "Seller"
-               quote@SellerBuyer(price);
-               println@Console("Quoted buyer " + price + "DKK for " + product + ".")();
+               invoice.product = product;
+               invoice.price = price;
+               invoice.seller = name;
+               quote@SellerBuyer(invoice);
+               println@Console("Quoted buyer " + invoice.price + "DKK for " + invoice.product + ".")();
 
                [accept(sth)]{
                //   order@SellerShipper("Send the Buyer some "+product+", please.");
-                    invoice.product = product;
-                    invoice.price = price;
-                    invoice.seller = name;
                     order@SellerShipper(invoice);
                     println@Console("The price was accepted.")()
                }

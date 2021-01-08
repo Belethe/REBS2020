@@ -24,16 +24,16 @@ service BuyerService {
     }
     main {
           ask@BuyerSeller("chips")
-          {
-               [quote(price)]{
+          { //This newline is stupidly important! It doesn't work, if this { is on the line above!
+               [quote(quote)]{
                     maxprice = 20
-                    if (price <maxprice) {
-                         println@Console( "The price was "+price+"DKK, which is lower than "+maxprice+"DKK.")();
-                         accept@BuyerSeller("Ok to buy chips for " + price);
-                         [details(invoice)]{println@Console( "Received the invoice from Shipper: "+invoice)()}
+                    if (quote.price < maxprice) {
+                         println@Console("Accepted price at "+quote.price+"DKK, since it's lower than "+maxprice+"DKK.")();
+                         accept@BuyerSeller("Ok to buy chips for " + quote.price);
+                         [details(invoice)]{println@Console("Received the invoice from Shipper: "+invoice)()}
                     } else {
-                         println@Console( "The price was higher than "+maxprice+"DKK. Seller asked for "+price+"DKK.")();
-                         reject@BuyerSeller("Not ok to buy chips for " + price)
+                         println@Console("Rejected price at "+quote.price+"DKK, since it's higher than "+maxprice+"DKK.")();
+                         reject@BuyerSeller("Not ok to buy chips for " + quote.price)
                     }
                }
           }
