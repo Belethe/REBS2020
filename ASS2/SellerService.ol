@@ -23,7 +23,7 @@ service SellerService {
          protocol: http { format = "json" }
          interfaces: BuyerSellerInterface
     }
-    
+
     main {
       [ask(product)]{
         price = 17;
@@ -40,5 +40,5 @@ service SellerService {
         }
 
       }
-	}
+     }
 }

@@ -23,18 +23,18 @@ service BuyerService {
          interfaces: SellerBuyerInterface
     }
     main {
-        ask@BuyerSeller("chips")
-		{[quote(price)]{
-      maxprice = 20
-			if (price <maxprice) {
-				println@Console( "price lower than "+maxprice)();
-				accept@BuyerSeller("Ok to buy chips for " + price);
-				[details(invoice)]{println@Console( "Received "+invoice+" from Shipper!")()}
-			} else {
-				println@Console( "price not lower than "+maxprice)();
-				reject@BuyerSeller("Not ok to buy chips for " + price)
-			}
-		 }
-    }
-	}
+          ask@BuyerSeller("chips"){
+               [quote(price)]{
+                    maxprice = 20
+                    if (price <maxprice) {
+                         println@Console( "price lower than "+maxprice)();
+                         accept@BuyerSeller("Ok to buy chips for " + price);
+                         [details(invoice)]{println@Console( "Received "+invoice+" from Shipper!")()}
+                    } else {
+                         println@Console( "price not lower than "+maxprice)();
+                         reject@BuyerSeller("Not ok to buy chips for " + price)
+                    }
+               }
+          }
+     }
 }

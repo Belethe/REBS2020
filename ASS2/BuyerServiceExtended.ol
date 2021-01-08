@@ -34,27 +34,28 @@ service BuyerService {
     main {
     ask@BuyerSeller0("chips"){
       [quote(price0)]{
-        ask@BuyerSeller("chips")
-    		{[quote(price)]{
-          maxprice = 20
-          if price <= price0 && price < maxprice{
-            accept@BuyerSeller("Ok to buy chips for " + price);
-            reject@BuyerSeller0("Not ok to buy chips for " + price0);
-            println@Console( "accepted "+price+" from Seller, rejected "+ price0+ " from Seller0")()
-          }else if(price0<maxprice){
-            accept@BuyerSeller0("Ok to buy chips for " + price0);
-            reject@BuyerSeller("Not ok to buy chips for " + price);
-            println@Console( "accepted "+price0+" from Seller0, rejected "+ price+ " from Seller1")()
-          }else{
-            reject@BuyerSeller("Not ok to buy chips for " + price);
-            reject@BuyerSeller0("Not ok to buy chips for " + price);
-            println@Console( "Rejected both "+price+" and "+price0+"from Seller and Seller0, respectively.")()
+        ask@BuyerSeller("chips"){
+          [quote(price)]{
+            maxprice = 20
+            if price <= price0 && price < maxprice{
+              accept@BuyerSeller("Ok to buy chips for " + price);
+              reject@BuyerSeller0("Not ok to buy chips for " + price0);
+              println@Console( "accepted "+price+" from Seller, rejected "+ price0+ " from Seller0")()
+            }else if(price0<maxprice){
+              accept@BuyerSeller0("Ok to buy chips for " + price0);
+              reject@BuyerSeller("Not ok to buy chips for " + price);
+              println@Console( "accepted "+price0+" from Seller0, rejected "+ price+ " from Seller1")()
+            }else{
+              reject@BuyerSeller("Not ok to buy chips for " + price);
+              reject@BuyerSeller0("Not ok to buy chips for " + price);
+              println@Console( "Rejected both "+price+" and "+price0+"from Seller and Seller0, respectively.")()
+            }
+            [details(invoice)]{
+              println@Console( "Received "+invoice+" from Shipper!")()
+            }
           }
-          [details(invoice)]{println@Console( "Received "+invoice+" from Shipper!")()}
-    		 }
         }
       }
     }
-
 	}
 }
