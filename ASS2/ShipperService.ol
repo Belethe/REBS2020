@@ -17,8 +17,9 @@ service ShipperService {
          interfaces: SellerShipperInterface
     }
     main {
-      [order(price)]{
-        details@ShipperBuyer("This is the invoice")
+      [order(invoice)]{
+        details@ShipperBuyer("You have bought "+invoice.product+" for "+invoice.price+"DKK from "+invoice.seller)
+        println@Console("Invoice sent to buyer.")()
       }
     }
 }

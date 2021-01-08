@@ -1,3 +1,8 @@
+type GetInvoiceInfo: void {
+    .product: string
+    .price: int
+    .seller: string
+}
 
 interface BuyerSellerInterface {
     OneWay:
@@ -8,7 +13,7 @@ interface BuyerSellerInterface {
 
 interface SellerShipperInterface {
     OneWay:
-        order( string )
+        order( GetInvoiceInfo )
 }
 
 interface ShipperBuyerInterface {

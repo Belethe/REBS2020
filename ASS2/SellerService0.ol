@@ -23,21 +23,27 @@ service SellerService {
          protocol: http { format = "json" }
          interfaces: BuyerSellerInterface
     }
-    main {
-      [ask(product)]{
-        price = 23;
-        quote@SellerBuyer(price);
-        println@Console("Quoted buyer " + price + "dkk for " + product + ".")();
 
-        [ accept(sth)]{
-            order@SellerShipper("Send the Buyer some "+product+", please.");
-            println@Console("Accepted.")()
-        }
+        main {
+          [ask(product)]{
+               price = 10;
+               name = "Seller0"
+               quote@SellerBuyer(price);
+               println@Console("Quoted buyer " + price + "DKK for " + product + ".")();
 
-        [reject(sth)]{
-            println@Console("Rejected.")()
-        }
+               [accept(sth)]{
+               //   order@SellerShipper("Send the Buyer some "+product+", please.");
+                    invoice.product = product;
+                    invoice.price = price;
+                    invoice.seller = name;
+                    order@SellerShipper(invoice);
+                    println@Console("The price was accepted.")()
+               }
 
-      }
+               [reject(sth)]{
+                    println@Console("The price was rejected.")()
+               }
+
+          }
      }
 }
