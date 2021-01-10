@@ -2,6 +2,7 @@ include "InterfaceModules.iol"
 
 include "console.iol"
 
+
 service SellerService {
 
     execution{ single }
@@ -26,7 +27,7 @@ service SellerService {
 
      main {
           [ask(product)]{
-               price = 27;
+               price = 24;
                name = "Seller"
                invoice.product = product;
                invoice.price = price;
@@ -35,15 +36,13 @@ service SellerService {
                println@Console("Quoted buyer " + invoice.price + "DKK for " + invoice.product + ".")();
 
                [accept(sth)]{
-               //   order@SellerShipper("Send the Buyer some "+product+", please.");
                     order@SellerShipper(invoice);
-                    println@Console("The price was accepted.")()
+                    println@Console("The price was accepted with message: " + sth)()
                }
 
                [reject(sth)]{
-                    println@Console("The price was rejected.")()
+                    println@Console("The price was rejected with messsage: " + sth)()
                }
-
           }
      }
 }

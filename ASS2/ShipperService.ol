@@ -19,7 +19,7 @@ service ShipperService {
     main {
       [order(invoice)]{
         details@ShipperBuyer("You have bought "+invoice.product+" for "+invoice.price+"DKK from "+invoice.seller)
-        println@Console("Invoice sent to buyer.")()
+        println@Console("Invoice sent to buyer: "+invoice.product+" for "+invoice.price+"DKK from "+invoice.seller)()
       }
     }
 }

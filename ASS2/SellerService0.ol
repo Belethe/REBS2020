@@ -12,7 +12,7 @@ service SellerService {
          interfaces: SellerBuyerInterface
     }
 
-    outputPort SellerShipper { // FIXME Should this be on channel 6?
+    outputPort SellerShipper {
          location: "socket://localhost:8003"
          protocol: http { format = "json" }
          interfaces: SellerShipperInterface
@@ -26,7 +26,7 @@ service SellerService {
 
      main {
           [ask(product)]{
-               price = 15;
+               price = 19;
                name = "Seller0"
                invoice.product = product;
                invoice.price = price;
@@ -35,15 +35,13 @@ service SellerService {
                println@Console("Quoted buyer " + invoice.price + "DKK for " + invoice.product + ".")();
 
                [accept(sth)]{
-               //   order@SellerShipper("Send the Buyer some "+product+", please.");
                     order@SellerShipper(invoice);
-                    println@Console("The price was accepted.")()
+                    println@Console("The price was accepted with message: " + sth)()
                }
 
                [reject(sth)]{
-                    println@Console("The price was rejected.")()
+                    println@Console("The price was rejected with messsage: " + sth)()
                }
-
           }
      }
 }
