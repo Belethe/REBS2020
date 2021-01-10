@@ -47,7 +47,7 @@ service BuyerService {
       accept@BuyerSeller("Ok to buy chips for " + quote.price);
       reject@BuyerSeller0("Not ok to buy chips for " + quote0.price);
       println@Console("Accepted "+quote.price+" from "+quote.seller+", rejected "+quote0.price+" from "+quote0.seller+".")()
-    }else if(quote0.price < maxprice){ // This is where it goes wrong. I think.
+    }else if(quote0.price < maxprice){
       accept@BuyerSeller0("Ok to buy chips for "+quote0.price);
       reject@BuyerSeller("Not ok to buy chips for "+quote.price);
       println@Console("Accepted "+quote0.price+" from "+quote0.seller+", rejected "+quote.price+" from "+quote.seller+".")()

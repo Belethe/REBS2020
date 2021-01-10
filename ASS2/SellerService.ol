@@ -27,7 +27,7 @@ service SellerService {
 
      main {
           [ask(product)]{
-               price = 24;
+               price = 19;
                name = "Seller"
                invoice.product = product;
                invoice.price = price;
