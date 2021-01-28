@@ -37,7 +37,7 @@ main {
     s.regex = "/"
     split@StringUtils( s )( s )
     activity = s.result[3]
-    global.counters.(activity)++
+    global.counters.(activity)++ // If counters.(activity) f.ex counters.'Handle cases' exist, count up, if it doesn't exist, initialize it with value 0, and count one up.
     foreach(c: global.counters){
       println@Console(c+":"+global.counters.(c))()
     }
