@@ -1,0 +1,21 @@
+Stuff Jolie should have:
+
+Proper error message when you accidentally define request_responsen as [ask(req)(res)] instead of [ask(req)(res){...}]. Right now it just sends output as void, which results in a type mismatch. That's misleading.
+
+Default variable when doing request response, so you don't need {str = "This is the request"} and a custom data type for the request.
+
+You should be allowed to write ; after the last statement in a {} block.
+
+Another name. So you could actally google stuff about it without getting hits on Angelina Jolie. Because that's the only thing showing up rn.
+
+Variables should be initialised. A spelling error in a variable name may never be discovered.
+
+
+
+Fint - bemærk dog at man selv skal kode sin broker og også selv sørge for at beskeder kom frem i rækkefølge.
+
+cd ~/diku/res/REBS2020/ASS2/RandomLists/
+export PS1="\e[1;32msmg399\\e[0m$ "
+
+jolie StartSeller.ol "socket://localhost:8100"
+
